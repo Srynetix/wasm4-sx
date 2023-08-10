@@ -1,0 +1,20 @@
+[package]
+name = "wasm4-sx"
+version = "0.1.0"
+authors = ["Denis BOURGE <Srynetix@users.noreply.github.com>"]
+edition = "2021"
+
+[dependencies]
+fastrand = { version = "2.0.0", default-features = false }
+const-str = "0.5.6"
+byteorder = { version = "1.4.3", default-features = false }
+arrayvec = { version = "0.7.4", default-features = false }
+wasm4-sys = { path = "../wasm4-sys" }
+serde = { version = "1.0", optional = true }
+
+[dev-dependencies]
+wasm4-stubs = { path = "../wasm4-stubs" }
+
+[features]
+default = []
+serde = ["dep:serde"]

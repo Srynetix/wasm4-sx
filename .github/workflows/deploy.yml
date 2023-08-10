@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    env:
+      CARGO_TERM_COLOR: always
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: rustup toolchain install stable --profile minimal --target wasm32-unknown-unknown
+      - uses: extractions/setup-just@v1
+      - uses: Swatinem/rust-cache@v2
+      - run: |
+          just doc
+          mkdir -p exports && cp -r ./wasm4-sx/target/doc/* ./exports/
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: exports
