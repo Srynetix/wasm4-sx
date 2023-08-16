@@ -22,6 +22,12 @@ pub fn rand_u8(range: impl RangeBounds<u8>) -> u8 {
     GLOBAL_RNG.borrow_mut().as_mut().unwrap().u8(range)
 }
 
+/// Generate a random i32.
+pub fn rand_i32(range: impl RangeBounds<i32>) -> i32 {
+    ensure_initialized();
+    GLOBAL_RNG.borrow_mut().as_mut().unwrap().i32(range)
+}
+
 /// Generate a random f64.
 pub fn rand_f64() -> f64 {
     ensure_initialized();
