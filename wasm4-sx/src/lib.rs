@@ -67,7 +67,7 @@ pub use gamepad::{GamepadButton, GamepadIndex, GamepadState};
 pub use mouse::{MouseButton, MouseState};
 pub use music::TrackReader;
 pub use palette::{Palette, PaletteIndex};
-pub use rand::{rand_f64, rand_reseed, rand_u8};
+pub use rand::{rand_f64, rand_i32, rand_reseed, rand_u8};
 pub use text::{Text, TextHorizontalAlignment, TextVerticalAligment};
 pub use tone::*;
 pub use vec2::Vec2;

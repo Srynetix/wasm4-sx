@@ -18,6 +18,9 @@ impl Engine {
     /// Target frames per second.
     pub const FPS: u64 = 60;
 
+    /// Delta time.
+    pub const DELTA_TIME: f32 = (1.0 / Self::FPS as f32);
+
     /// Set frame skip.
     ///
     /// Set to 0 to unset.
@@ -72,6 +75,7 @@ impl Engine {
 pub struct FrameContext {
     gamepads: [GamepadState; 4],
     mouse: MouseState,
+    delta_time: f32,
 }
 
 impl FrameContext {
@@ -95,10 +99,16 @@ impl FrameContext {
         Screen::get()
     }
 
+    /// Get delta time.
+    pub fn delta_time(&self) -> f32 {
+        self.delta_time
+    }
+
     fn new() -> Self {
         Self {
             gamepads: GlobalGamepads::get_all_gamepads(),
             mouse: GlobalMouse::get(),
+            delta_time: Engine::DELTA_TIME,
         }
     }
 }

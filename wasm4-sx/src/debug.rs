@@ -1,3 +1,13 @@
+/// Format text.
+#[macro_export]
+macro_rules! format_w4 {
+    ($($args:tt)*) => {{
+        let mut writer = $crate::arrayvec::ArrayString::<128>::new();
+        ::core::fmt::write(&mut writer, format_args!($($args)*)).unwrap();
+        writer
+    }}
+}
+
 /// Print a line.
 #[macro_export]
 macro_rules! println_w4 {
